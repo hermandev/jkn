@@ -1,13 +1,14 @@
-import { SendOption } from '../fetcher.js';
-import { PCareBaseApi } from './base.js';
+import { CachedApi } from "../base.js";
 
-type RequestOption = SendOption;
+export class PCare {
+  private static instance: PCare | undefined;
 
-/**
- * Implement base api directly since this is for partial support
- */
-export class PCare extends PCareBaseApi {
-	async request<T>(option: RequestOption) {
-		return this.send<T>(option);
-	}
+  private constructor(private readonly cache: CachedApi) {}
+
+  static getInstance(cache: CachedApi): PCare {
+    if (!this.instance) {
+      this.instance = new PCare(cache);
+    }
+    return this.instance;
+  }
 }
