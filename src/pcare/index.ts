@@ -1,8 +1,5 @@
 import { CachedApi } from '../base.js';
-import { Diagnosa } from './diagnosa.js';
-import { Dokter } from './dokter.js';
-import { Kesadaran } from './kesadaran.js';
-import { Poli } from './poli.js';
+import { Referensi } from './referensi.js';
 
 export class PCare {
 	private static instance: PCare | undefined;
@@ -16,19 +13,7 @@ export class PCare {
 		return this.instance;
 	}
 
-	get diagnosa() {
-		return this.cache.get('pcare_diagnosa', Diagnosa);
-	}
-
-	get dokter() {
-		return this.cache.get('pcare_dokter', Dokter);
-	}
-
-	get kesadaran() {
-		return this.cache.get('pcare_kesadaran', Kesadaran);
-	}
-
-	get poli() {
-		return this.cache.get('pcare_poli_fktp', Poli);
+	get referensi() {
+		return this.cache.get('pcare_referensi', Referensi);
 	}
 }
