@@ -88,6 +88,20 @@ export class Referensi extends PCareBaseApi {
 			method: 'GET'
 		});
 	}
+
+	/**
+	 * Get Status Pulang
+	 */
+	async statuspulang(params: {
+		/** status rawat inap true or false */
+		ranap: boolean;
+	}) {
+		return this.send<{ count: number; list: StatusPulangResult[] }>({
+			name: `${this.name} Status Pulang`,
+			path: `/statuspulang/rawatInap/${params.ranap}`,
+			method: 'GET'
+		});
+	}
 }
 
 interface PoliResult {
@@ -142,4 +156,12 @@ interface PrognosaResult {
 
 	/** nama prognosa */
 	nmPrognosa: string;
+}
+
+interface StatusPulangResult {
+	/** kode status pulang */
+	kdStatusPulang: string;
+
+	/** nama status pulang */
+	nmStatusPulang: string;
 }

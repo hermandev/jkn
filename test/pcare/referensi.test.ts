@@ -33,4 +33,16 @@ describe('PCare - Referensi', { timeout: 25_000 }, () => {
 		expect(result.metaData.code).toBe(200);
 		expect(result.response?.list.map((d) => d.kdPrognosa)).toContain('01');
 	});
+
+	it.concurrent('satatuspulang(ranap = true) - 200 ok', async () => {
+		const result = await jkn.pcare.referensi.statuspulang({ ranap: true });
+		expect(result.metaData.code).toBe(200);
+		expect(result.response?.list.map((d) => d.nmStatusPulang)).toContain('Sembuh');
+	});
+
+	it.concurrent('satatuspulang(ranap = false) - 200 ok', async () => {
+		const result = await jkn.pcare.referensi.statuspulang({ ranap: false });
+		expect(result.metaData.code).toBe(200);
+		expect(result.response?.list.map((d) => d.nmStatusPulang)).toContain('Berobat Jalan');
+	});
 });
