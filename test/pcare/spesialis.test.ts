@@ -25,4 +25,13 @@ describe('PCare - Referensi', { timeout: 25_000 }, () => {
 		expect(result.metaData.code).toBe(200);
 		expect(result.response?.list.map((d) => d.nmKhusus)).toContain('HEMODIALISA');
 	});
+
+	it.concurrent('faskesRujukanSubSpesialis() - 200 ok', async () => {
+		const result = await jkn.pcare.spesialis.faskesRujukanSubSpesialis({
+			kodeSub: '26', // kode subSpesialis untuk ANAK
+			kodeSarana: '1', // kode sarana untuk REKAM MEDIK
+			tanggal: '25-03-2026'
+		});
+		expect(result.metaData.code).toBe(200);
+	});
 });

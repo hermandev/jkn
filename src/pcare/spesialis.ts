@@ -48,6 +48,29 @@ export class Spesialis extends PCareBaseApi {
 			method: 'GET'
 		});
 	}
+
+	/**
+	 * Get Data Faskes Rujukan Sub Spesialis
+	 */
+	async faskesRujukanSubSpesialis(params: {
+		/** Kode Sub Spesialis */
+		kodeSub: string;
+
+		/** Kode Sarana */
+		kodeSarana: string;
+
+		/** Tanggal Estimasi Rujuk, format: dd-mm-yyyy */
+		tanggal: string;
+	}) {
+		return this.send<{ count: number; list: FaskesRujukanSubSpesialis[] }>({
+			name: `${this.name} Data Faskes Rujukan Sub Spesialis`,
+			path: [
+				'/spesialis/rujuk/subspesialis/:kodeSub/sarana/:kodeSarana/tglEstRujuk/:tanggal',
+				params
+			],
+			method: 'GET'
+		});
+	}
 }
 
 interface SpesialisResult {
@@ -83,4 +106,18 @@ interface KhususResult {
 
 	/** nama khusus */
 	nmKhusus: string;
+}
+
+interface FaskesRujukanSubSpesialis {
+	kdppk: string;
+	nmppk: string;
+	alamatPpk: string;
+	telpPpk: string;
+	kelas: string;
+	nmkc: string;
+	distance: number;
+	jadwal: string;
+	jmlRujuk: number;
+	kapasitas: number;
+	persentase: number;
 }
