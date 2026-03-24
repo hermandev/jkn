@@ -13,4 +13,10 @@ describe('PCare - Referensi', { timeout: 25_000 }, () => {
 		expect(result.metaData.code).toBe(200);
 		expect(result.response?.list.map((d) => d.kdPoliRujuk)).toContain('ANA');
 	});
+
+	it.concurrent('sarana() - 200 ok', async () => {
+		const result = await jkn.pcare.spesialis.sarana();
+		expect(result.metaData.code).toBe(200);
+		expect(result.response?.list.map((d) => d.nmSarana)).toContain('REKAM MEDIK');
+	});
 });

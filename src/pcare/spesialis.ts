@@ -26,6 +26,17 @@ export class Spesialis extends PCareBaseApi {
 			method: 'GET'
 		});
 	}
+
+	/**
+	 * Get Data Referensi Sarana
+	 */
+	async sarana() {
+		return this.send<{ count: number; list: SaranaResult[] }>({
+			name: `${this.name} Data Referensi Sarana`,
+			path: '/spesialis/sarana',
+			method: 'GET'
+		});
+	}
 }
 
 interface SpesialisResult {
@@ -45,4 +56,12 @@ interface SubSpesialisResult {
 
 	/** kode poli rujuk  */
 	kdPoliRujuk: string;
+}
+
+interface SaranaResult {
+	/** kode sarana */
+	kdSarana: string;
+
+	/** nama sarana */
+	nmSarana: string;
 }
