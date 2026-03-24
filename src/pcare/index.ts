@@ -1,4 +1,5 @@
 import { CachedApi } from '../base.js';
+import { Peserta } from './peserta.js';
 import { Referensi } from './referensi.js';
 
 export class PCare {
@@ -15,5 +16,9 @@ export class PCare {
 
 	get referensi() {
 		return this.cache.get('pcare_referensi', Referensi);
+	}
+
+	get peserta() {
+		return this.cache.get('pcare_peserta', Peserta);
 	}
 }
