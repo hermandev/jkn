@@ -45,4 +45,9 @@ describe('PCare - Referensi', { timeout: 25_000 }, () => {
 		expect(result.metaData.code).toBe(200);
 		expect(result.response?.list.map((d) => d.nmStatusPulang)).toContain('Berobat Jalan');
 	});
+
+	it.concurrent('provider() - 200 ok', async () => {
+		const result = await jkn.pcare.referensi.provider({ row: 1, limit: 10 });
+		expect(result.metaData.code).toBe(200);
+	});
 });

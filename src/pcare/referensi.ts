@@ -102,6 +102,24 @@ export class Referensi extends PCareBaseApi {
 			method: 'GET'
 		});
 	}
+
+	/**
+	 * Get Data Provider Rayonisasi
+	 * @param params params{row, limit}
+	 */
+	async provider(params: {
+		/** Row data awal yang akan ditampilkan */
+		row: number;
+
+		/** Limit jumlah data yang akan ditampilkan */
+		limit: number;
+	}) {
+		return this.send<{ count: number; list: ProviderResult[] }>({
+			name: `${this.name} Data Provider Rayonisasi`,
+			path: ['/provider/:row/:limit', params],
+			method: 'GET'
+		});
+	}
 }
 
 interface PoliResult {
@@ -164,4 +182,12 @@ interface StatusPulangResult {
 
 	/** nama status pulang */
 	nmStatusPulang: string;
+}
+
+interface ProviderResult {
+	/** kode provider */
+	kdProvider: string;
+
+	/** nama provider */
+	nmProvider: string;
 }
