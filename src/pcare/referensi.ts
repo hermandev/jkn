@@ -2,6 +2,21 @@ import { PCareBaseApi } from './base.js';
 
 export class Referensi extends PCareBaseApi {
 	/**
+	 * Get Data Alergi
+	 * @param params param {kode = [01 = Makanan, 02 = Udara, 03 = Obat]}
+	 */
+	async alergi(params: {
+		/** Kode Jenis Alergi [01 = Makanan, 02 = Udara, 03 = Obat] */
+		kode: string;
+	}) {
+		return this.send<{ count: number; list: AlergiResult[] }>({
+			name: `${this.name} Data Alergi`,
+			path: ['/alergi/jenis/:kode', params],
+			method: 'GET'
+		});
+	}
+
+	/**
 	 * Get Data Diagnosa
 	 * @param params param {kode, row, limit}
 	 */
@@ -100,4 +115,12 @@ interface DiagnosaResult {
 
 	/** non-spesialis */
 	nonSpesialis: boolean;
+}
+
+interface AlergiResult {
+	/** kode alergi */
+	kdAlergi: string;
+
+	/** nama alergi */
+	nmAlergi: string;
 }
