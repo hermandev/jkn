@@ -2,6 +2,7 @@ import { CachedApi } from '../base.js';
 import { Kunjungan } from './kunjungan.js';
 import { Peserta } from './peserta.js';
 import { Referensi } from './referensi.js';
+import { Spesialis } from './spesialis.js';
 
 export class PCare {
 	private static instance: PCare | undefined;
@@ -25,5 +26,9 @@ export class PCare {
 
 	get kunjungan() {
 		return this.cache.get('pcare_kunjungan', Kunjungan);
+	}
+
+	get spesialis() {
+		return this.cache.get('pcare_spesialis', Spesialis);
 	}
 }
