@@ -1,6 +1,10 @@
 import { PCareBaseApi } from './base.js';
 
 export class Diagnosa extends PCareBaseApi {
+	/**
+	 * Get Data Diagnosa
+	 * @param params param {kode, row, limit}
+	 */
 	async get(params: {
 		/** Kode atau nama diagnosa */
 		kode: string;

@@ -1,6 +1,10 @@
 import { PCareBaseApi } from './base.js';
 
 export class Dokter extends PCareBaseApi {
+	/**
+	 * Get Data Dokter
+	 * @param params params{row,limit}
+	 */
 	async get(params: {
 		/** Row data awal yang akan ditampilkan */
 		row: number;
