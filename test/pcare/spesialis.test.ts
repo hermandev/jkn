@@ -19,4 +19,10 @@ describe('PCare - Referensi', { timeout: 25_000 }, () => {
 		expect(result.metaData.code).toBe(200);
 		expect(result.response?.list.map((d) => d.nmSarana)).toContain('REKAM MEDIK');
 	});
+
+	it.concurrent('khusus() - 200 ok', async () => {
+		const result = await jkn.pcare.spesialis.khusus();
+		expect(result.metaData.code).toBe(200);
+		expect(result.response?.list.map((d) => d.nmKhusus)).toContain('HEMODIALISA');
+	});
 });

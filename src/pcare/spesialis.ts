@@ -37,6 +37,17 @@ export class Spesialis extends PCareBaseApi {
 			method: 'GET'
 		});
 	}
+
+	/**
+	 * Get Data Referensi Khusus
+	 */
+	async khusus() {
+		return this.send<{ count: number; list: KhususResult[] }>({
+			name: `${this.name} Data Referensi Khusus`,
+			path: '/spesialis/khusus',
+			method: 'GET'
+		});
+	}
 }
 
 interface SpesialisResult {
@@ -64,4 +75,12 @@ interface SaranaResult {
 
 	/** nama sarana */
 	nmSarana: string;
+}
+
+interface KhususResult {
+	/** kode khusus */
+	kdKhusus: string;
+
+	/** nama khusus */
+	nmKhusus: string;
 }
