@@ -54,5 +54,12 @@ describe('PCare - Referensi', { timeout: 25_000 }, () => {
 	it.concurrent('spesialis() - 200 ok', async () => {
 		const result = await jkn.pcare.referensi.spesialis();
 		expect(result.metaData.code).toBe(200);
+		expect(result.response?.list.map((d) => d.kdSpesialis)).toContain('ANA');
+	});
+
+	it.concurrent('subSpesialis() - 200 ok', async () => {
+		const result = await jkn.pcare.referensi.subSpesialis({ kode: 'ANA' });
+		expect(result.metaData.code).toBe(200);
+		expect(result.response?.list.map((d) => d.kdPoliRujuk)).toContain('ANA');
 	});
 });
