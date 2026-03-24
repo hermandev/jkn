@@ -1,6 +1,7 @@
 import { CachedApi } from '../base.js';
 import { Diagnosa } from './diagnosa.js';
 import { Dokter } from './dokter.js';
+import { Kesadaran } from './kesadaran.js';
 
 export class PCare {
 	private static instance: PCare | undefined;
@@ -20,5 +21,9 @@ export class PCare {
 
 	get dokter() {
 		return this.cache.get('pcare_dokter', Dokter);
+	}
+
+	get kesadaran() {
+		return this.cache.get('pcare_kesadaran', Kesadaran);
 	}
 }
