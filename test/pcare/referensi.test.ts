@@ -50,4 +50,9 @@ describe('PCare - Referensi', { timeout: 25_000 }, () => {
 		const result = await jkn.pcare.referensi.provider({ row: 1, limit: 10 });
 		expect(result.metaData.code).toBe(200);
 	});
+
+	it.concurrent('spesialis() - 200 ok', async () => {
+		const result = await jkn.pcare.referensi.spesialis();
+		expect(result.metaData.code).toBe(200);
+	});
 });

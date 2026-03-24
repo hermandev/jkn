@@ -120,6 +120,17 @@ export class Referensi extends PCareBaseApi {
 			method: 'GET'
 		});
 	}
+
+	/**
+	 * Get Data Referensi Spesialis
+	 */
+	async spesialis() {
+		return this.send<{ count: number; list: SpesialisResult[] }>({
+			name: `${this.name} Data Provider Rayonisasi`,
+			path: '/spesialis',
+			method: 'GET'
+		});
+	}
 }
 
 interface PoliResult {
@@ -190,4 +201,12 @@ interface ProviderResult {
 
 	/** nama provider */
 	nmProvider: string;
+}
+
+interface SpesialisResult {
+	/** kode spesialis */
+	kdSpesialis: string;
+
+	/** nama spesialis */
+	nmSpesialis: string;
 }
