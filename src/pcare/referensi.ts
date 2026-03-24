@@ -77,6 +77,17 @@ export class Referensi extends PCareBaseApi {
 			method: 'GET'
 		});
 	}
+
+	/**
+	 * Get Data Prognosa
+	 */
+	async prognosa() {
+		return this.send<{ count: number; list: PrognosaResult[] }>({
+			name: `${this.name} Data Prognosa`,
+			path: '/prognosa',
+			method: 'GET'
+		});
+	}
 }
 
 interface PoliResult {
@@ -123,4 +134,12 @@ interface AlergiResult {
 
 	/** nama alergi */
 	nmAlergi: string;
+}
+
+interface PrognosaResult {
+	/** kode prognosa */
+	kdPrognosa: string;
+
+	/** nama prognosa */
+	nmPrognosa: string;
 }

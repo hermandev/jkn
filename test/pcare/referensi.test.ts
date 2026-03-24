@@ -27,4 +27,10 @@ describe('PCare - Referensi', { timeout: 25_000 }, () => {
 		expect(result.metaData.code).toBe(200);
 		expect(result.response?.list.map((d) => d.nmAlergi)).toContain('Seafood');
 	});
+
+	it.concurrent('prognosa() - 200 ok', async () => {
+		const result = await jkn.pcare.referensi.prognosa();
+		expect(result.metaData.code).toBe(200);
+		expect(result.response?.list.map((d) => d.kdPrognosa)).toContain('01');
+	});
 });
