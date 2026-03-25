@@ -30,6 +30,47 @@ export class Kunjungan extends PCareBaseApi {
 			method: 'GET'
 		});
 	}
+
+	/**
+	 * Add Data Kunjungan
+	 * @param data InputRujukanKhusus | InputRujukanSpesialis
+	 */
+	async insert(data: InputKunjunganKhusus | InputKunjunganSpesialis) {
+		return this.send<{ field: string; messaage: string }>({
+			name: `${this.name} Add Data Kunjungan`,
+			path: '/kunjungan',
+			method: 'POST',
+			data: data
+		});
+	}
+
+	/**
+	 * Edit Data Kunjungan
+	 * @param data InputUpdateKunjungan
+	 */
+	async update(data: InputUpdateKunjungan) {
+		return this.send<null>({
+			name: `${this.name} Edit Data Kunjungan`,
+			path: '/kunjungan',
+			method: 'PUT',
+			data: data
+		});
+	}
+
+	/**
+	 * Delete Data Kunjungan
+	 * @param params {nomor = Nomor Kunjungan}
+	 */
+	async delete(params: {
+		/** Nomor Kunjungan */
+		nomor: string;
+	}) {
+		return this.send<null>({
+			name: `${this.name} Delete Data Kunjungan`,
+			path: ['/kunjungan/:nomor', params],
+			method: 'DELETE'
+		});
+	}
 }
 
 interface RujukanResult {
@@ -180,4 +221,125 @@ interface RiwayatKunjunganResult {
 		poliSakit: boolean;
 	};
 	tglPulang: string;
+}
+
+interface InputKunjunganKhusus {
+	noKunjungan: string | null;
+	noKartu: string;
+	tglDaftar: string;
+	kdPoli: string | null;
+	keluhan: string;
+	kdSadar: string;
+	sistole: number;
+	diastole: number;
+	beratBadan: number;
+	tinggiBadan: number;
+	respRate: number;
+	heartRate: number;
+	lingkarPerut: number;
+	kdStatusPulang: string;
+	tglPulang: string;
+	kdDokter: string;
+	kdDiag1: string;
+	kdDiag2: string | null;
+	kdDiag3: string | null;
+	kdPoliRujukInternal: string | null;
+	rujukLanjut: {
+		tglEstRujuk: string;
+		kdppk: string;
+	};
+	kdTacc: number;
+	alasanTacc: string | null;
+	anamnesa: string;
+	alergiMakan: string;
+	alergiUdara: string;
+	alergiObat: string;
+	kdPrognosa: string;
+	terapiObat: string;
+	terapiNonObat: string;
+	bmhp: string;
+	suhu: string;
+}
+
+interface InputKunjunganSpesialis {
+	noKunjungan: string | null;
+	noKartu: string;
+	tglDaftar: string;
+	kdPoli: string;
+	keluhan: string;
+	kdSadar: string;
+	sistole: number;
+	diastole: number;
+	beratBadan: number;
+	tinggiBadan: number;
+	respRate: number;
+	heartRate: number;
+	lingkarPerut: number;
+	kdStatusPulang: string;
+	tglPulang: string;
+	kdDokter: string;
+	kdDiag1: string;
+	kdDiag2: string | null;
+	kdDiag3: string | null;
+	kdPoliRujukInternal: string | null;
+	rujukLanjut: {
+		kdppk: string;
+		tglEstRujuk: string;
+	};
+	kdTacc: number;
+	alasanTacc: string | null;
+	anamnesa: string;
+	alergiMakan: string;
+	alergiUdara: string;
+	alergiObat: string;
+	kdPrognosa: string;
+	terapiObat: string;
+	terapiNonObat: string;
+	bmhp: string;
+	suhu: string;
+}
+
+interface InputUpdateKunjungan {
+	noKunjungan: string;
+	noKartu: string;
+	keluhan: string;
+	kdSadar: string;
+	sistole: number;
+	diastole: number;
+	beratBadan: number;
+	tinggiBadan: number;
+	respRate: number;
+	heartRate: number;
+	lingkarPerut: number;
+	kdStatusPulang: string;
+	tglPulang: string;
+	kdDokter: string;
+	kdDiag1: string;
+	kdDiag2: string | null;
+	kdDiag3: string | null;
+	kdPoliRujukInternal: string | null;
+	rujukLanjut: {
+		tglEstRujuk: string;
+		kdppk: string;
+		subSpesialis: {
+			kdSubSpesialis1: string;
+			kdSarana: string | null;
+		} | null;
+		khusus: {
+			kdKhusus: string;
+			kdSubSpesialis: string | null;
+			catatan: string;
+		} | null;
+	};
+	kdTacc: number;
+	alasanTacc: string;
+	anamnesa: string;
+	alergiMakan: string;
+	alergiUdara: string;
+	alergiObat: string;
+	kdPrognosa: string;
+	terapiObat: string;
+	terapiNonObat: string;
+	bmhp: string;
+	suhu: string;
 }
